@@ -11,6 +11,7 @@ public class BinarySearch {
     private final Scanner scanner = new Scanner(System.in);
 
     private int[] array;
+    private boolean ascending;
 
     public static void main(String[] args) {
         BinarySearch binarySearch = new BinarySearch();
@@ -32,7 +33,7 @@ public class BinarySearch {
             System.out.println("Please enter " + i + " element - ");
             array[i - 1] = scanner.nextInt();
         }
-
+        ascending = checkIfArrayIsSortedInAscending(array);
         System.out.println("Array input successful");
     }
 
@@ -72,19 +73,33 @@ public class BinarySearch {
     }
 
     private int recursiveBinarySearch(int[] array, int searchableElement, int first, int last) {
-        int mid = (first + last) / 2;
+        int mid = (int) Math.ceil((first + (double) last) / 2);
 
-        if (array[mid] > searchableElement) {
-            last = mid - 1;
+        if (searchableElement < array[mid]) {
+            if(ascending) {
+                last = mid - 1;
+            }else{
+                first = mid + 1;
+            }
         } else if (array[mid] == searchableElement) {
             return mid;
         } else {
-            first = mid + 1;
+            if(ascending) {
+                first = mid + 1;
+            }else{
+                last = mid - 1;
+            }
         }
         if (first > last) {
             return -1;
         }
         return recursiveBinarySearch(array, searchableElement, first, last);
+    }
+
+    private boolean checkIfArrayIsSortedInAscending(int[] array) {
+        boolean isAscending =array[0] < array[1];
+        System.out.println("Ascending - " + isAscending);
+        return isAscending;
     }
 
     private int iterativeBinarySearch(int[] array, int searchableElement) {
@@ -94,12 +109,20 @@ public class BinarySearch {
         int mid = (first + last) / 2;
 
         while (first <= last) {
-            if (array[mid] > searchableElement) {
-                last = mid - 1;
+            if (searchableElement < array[mid]) {
+                if(ascending) {
+                    last = mid - 1;
+                }else{
+                    first = mid + 1;
+                }
             } else if (array[mid] == searchableElement) {
                 return mid;
             } else {
-                first = mid + 1;
+                if(ascending) {
+                    first = mid + 1;
+                }else{
+                    last = mid - 1;
+                }
             }
             mid = (first + last) / 2;
         }
