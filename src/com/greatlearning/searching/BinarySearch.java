@@ -1,5 +1,7 @@
 package com.greatlearning.searching;
 
+import com.greatlearning.sorting.BubbleSort;
+
 import java.util.Scanner;
 
 /**
@@ -33,7 +35,20 @@ public class BinarySearch {
             System.out.println("Please enter " + i + " element - ");
             array[i - 1] = scanner.nextInt();
         }
-        ascending = checkIfArrayIsSortedInAscending(array);
+
+        boolean ascendingSorted = checkIfSorted(true);
+        boolean descendingSorted = checkIfSorted(false);
+        if (ascendingSorted) {
+            ascending = true;
+        } else if (descendingSorted) {
+            ascending = false;
+        } else {
+            System.out.println("Array not sorted, Sorting array first");
+            BubbleSort bubbleSort = new BubbleSort();
+            bubbleSort.sortValuesAfterInputDirection(array);
+        }
+
+
         System.out.println("Array input successful");
     }
 
@@ -76,17 +91,17 @@ public class BinarySearch {
         int mid = (int) Math.ceil((first + (double) last) / 2);
 
         if (searchableElement < array[mid]) {
-            if(ascending) {
+            if (ascending) {
                 last = mid - 1;
-            }else{
+            } else {
                 first = mid + 1;
             }
         } else if (array[mid] == searchableElement) {
             return mid;
         } else {
-            if(ascending) {
+            if (ascending) {
                 first = mid + 1;
-            }else{
+            } else {
                 last = mid - 1;
             }
         }
@@ -96,37 +111,42 @@ public class BinarySearch {
         return recursiveBinarySearch(array, searchableElement, first, last);
     }
 
-    private boolean checkIfArrayIsSortedInAscending(int[] array) {
-        boolean isAscending =array[0] < array[1];
-        System.out.println("Ascending - " + isAscending);
-        return isAscending;
-    }
-
     private int iterativeBinarySearch(int[] array, int searchableElement) {
         int size = array.length;
         int first = 0;
         int last = size - 1;
-        int mid = (first + last) / 2;
+        int mid = (int) Math.ceil((first + (double) last) / 2);
 
         while (first <= last) {
             if (searchableElement < array[mid]) {
-                if(ascending) {
+                if (ascending) {
                     last = mid - 1;
-                }else{
+                } else {
                     first = mid + 1;
                 }
             } else if (array[mid] == searchableElement) {
                 return mid;
             } else {
-                if(ascending) {
+                if (ascending) {
                     first = mid + 1;
-                }else{
+                } else {
                     last = mid - 1;
                 }
             }
-            mid = (first + last) / 2;
+            mid = (int) Math.ceil((first + (double) last) / 2);
         }
         return -1;
+    }
+
+    public boolean checkIfSorted(boolean ascending) { // check if the array is sorted and return boolean value
+        for (int i = 0; i < array.length - 1; i++) {
+            if (ascending && array[i] > array[i + 1]) {
+                return false;
+            } else if (!ascending && array[i] < array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

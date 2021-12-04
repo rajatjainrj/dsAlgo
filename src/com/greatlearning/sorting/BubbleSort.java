@@ -36,13 +36,6 @@ public class BubbleSort {
             array[i - 1] = scanner.nextInt();
         }
         System.out.println("Array input successful");
-
-        System.out.println("Please select direction of sorting - ");
-        System.out.println("1. Descending\n2. Ascending (default)");
-        int directionInput = scanner.nextInt();
-        if (directionInput == 1) {
-            ascending = false;
-        }
     }
 
     public void sortValues() {
@@ -53,7 +46,18 @@ public class BubbleSort {
         sortValues(array, ascending);
     }
 
+    public void sortValuesAfterInputDirection(int[] array) {
+        System.out.println("Please select direction of sorting - ");
+        System.out.println("1. Descending\n2. Ascending (default)");
+        int directionInput = scanner.nextInt();
+        if (directionInput == 1) {
+            ascending = false;
+        }
+        sortValues(array, ascending);
+    }
+
     public void sortValues(int[] array, boolean ascending) {
+        this.array = array;
         this.ascending = ascending;
         int len = array.length - 1;
         do {
