@@ -9,8 +9,6 @@ public abstract class Sort {
 
     int[] array;
 
-    boolean status = true;
-
     boolean ascending = true;
 
     public void insertValues() {
