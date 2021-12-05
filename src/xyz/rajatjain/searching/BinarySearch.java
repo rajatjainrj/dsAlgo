@@ -1,9 +1,6 @@
 package xyz.rajatjain.searching;
 
-import xyz.rajatjain.sorting.BubbleSort;
-import xyz.rajatjain.sorting.InsertionSort;
-import xyz.rajatjain.sorting.SelectionSort;
-import xyz.rajatjain.sorting.Sort;
+import xyz.rajatjain.sorting.*;
 
 import java.util.Scanner;
 
@@ -57,7 +54,10 @@ public class BinarySearch {
 
     private Sort selectSortAlgorithm() {
         System.out.println("Please select Sorting Algorithm - ");
-        System.out.println("1. Bubble\n2. Selection (default)\n3. Insertion");
+        System.out.println("1. Bubble" +
+                "\n2. Selection (default)" +
+                "\n3. Insertion" +
+                "\n4. Merge");
         int algoTypeInput = scanner.nextInt();
         switch (algoTypeInput){
             case 1:
@@ -67,6 +67,8 @@ public class BinarySearch {
                 return new SelectionSort();
             case 3:
                 return new InsertionSort();
+            case 4:
+                return new MergeSort();
         }
     }
 
