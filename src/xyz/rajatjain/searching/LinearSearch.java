@@ -1,4 +1,4 @@
-package com.greatlearning.searching;
+package xyz.rajatjain.searching;
 
 import java.util.Scanner;
 

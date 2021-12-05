@@ -1,4 +1,4 @@
-package com.greatlearning.sorting;
+package xyz.rajatjain.sorting;
 
 public class SelectionSort extends Sort {
 
@@ -14,16 +14,17 @@ public class SelectionSort extends Sort {
     public void sortValues(int[] array, boolean ascending) {
         setArrayAndAscending(array, ascending);
         for (int i = 0; i < array.length; i++) {
-            int min = array[i];
-            int minIndex = i;
+            int minMax = array[i];
+            int minMaxIndex = i;
             for (int j = i; j < array.length; j++) {
-                if(min>array[j]){
-                    min = array[j];
-                    minIndex = j;
+                if ((ascending && minMax > array[j]) ||
+                        (!ascending && minMax < array[j])) {
+                    minMax = array[j];
+                    minMaxIndex = j;
                 }
             }
-            array[minIndex] = array[i];
-            array[i] = min;
+            array[minMaxIndex] = array[i];
+            array[i] = minMax;
             printValues();
         }
 

@@ -1,6 +1,9 @@
-package com.greatlearning.searching;
+package xyz.rajatjain.searching;
 
-import com.greatlearning.sorting.BubbleSort;
+import xyz.rajatjain.sorting.BubbleSort;
+import xyz.rajatjain.sorting.InsertionSort;
+import xyz.rajatjain.sorting.SelectionSort;
+import xyz.rajatjain.sorting.Sort;
 
 import java.util.Scanner;
 
@@ -44,12 +47,27 @@ public class BinarySearch {
             ascending = false;
         } else {
             System.out.println("Array not sorted, Sorting array first");
-            BubbleSort bubbleSort = new BubbleSort();
-            bubbleSort.sortValuesAfterInputDirection(array);
+            Sort sort = selectSortAlgorithm();
+            sort.sortValuesAfterInputDirection(array);
         }
 
 
         System.out.println("Array input successful");
+    }
+
+    private Sort selectSortAlgorithm() {
+        System.out.println("Please select Sorting Algorithm - ");
+        System.out.println("1. Bubble\n2. Selection (default)\n3. Insertion");
+        int algoTypeInput = scanner.nextInt();
+        switch (algoTypeInput){
+            case 1:
+                return new BubbleSort();
+            default:
+            case 2:
+                return new SelectionSort();
+            case 3:
+                return new InsertionSort();
+        }
     }
 
 

@@ -1,4 +1,4 @@
-package com.greatlearning.sorting;
+package xyz.rajatjain.sorting;
 
 /**
  * @author rajatjain on - 04-12-2021

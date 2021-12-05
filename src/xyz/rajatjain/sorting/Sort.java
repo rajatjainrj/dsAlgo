@@ -1,4 +1,4 @@
-package com.greatlearning.sorting;
+package xyz.rajatjain.sorting;
 
 import java.util.Arrays;
 import java.util.Scanner;
