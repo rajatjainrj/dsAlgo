@@ -32,12 +32,13 @@ public class QuickSort extends Sort {
         int pivot = array[high];
         int i = low - 1;
         for (int j = low; j <= high - 1; j++) {
-            if (array[j] < pivot) {
+            if ((ascending && array[j] < pivot) ||
+                    (!ascending && array[j] > pivot)) {
                 i++;
                 swap(array, i, j);
             }
         }
-        swap(array, i+1, high);
+        swap(array, i + 1, high);
         return i + 1;
     }
 

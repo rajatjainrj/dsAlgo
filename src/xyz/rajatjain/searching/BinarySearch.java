@@ -57,7 +57,8 @@ public class BinarySearch {
         System.out.println("1. Bubble" +
                 "\n2. Selection (default)" +
                 "\n3. Insertion" +
-                "\n4. Merge");
+                "\n4. Merge" +
+                "\n5. Quick");
         int algoTypeInput = scanner.nextInt();
         switch (algoTypeInput){
             case 1:
@@ -69,6 +70,8 @@ public class BinarySearch {
                 return new InsertionSort();
             case 4:
                 return new MergeSort();
+            case 5:
+                return new QuickSort();
         }
     }
 
