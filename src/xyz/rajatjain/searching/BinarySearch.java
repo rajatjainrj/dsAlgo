@@ -1,6 +1,11 @@
 package xyz.rajatjain.searching;
 
-import xyz.rajatjain.sorting.*;
+import xyz.rajatjain.sorting.BubbleSort;
+import xyz.rajatjain.sorting.InsertionSort;
+import xyz.rajatjain.sorting.MergeSort;
+import xyz.rajatjain.sorting.QuickSort;
+import xyz.rajatjain.sorting.SelectionSort;
+import xyz.rajatjain.sorting.Sort;
 
 import java.util.Scanner;
 

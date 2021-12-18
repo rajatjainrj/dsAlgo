@@ -1,7 +1,5 @@
 package xyz.rajatjain.sorting;
 
-import java.util.Arrays;
-
 /**
  * @author rajatjain on - 16-12-2021
  * @project dsAlgo
