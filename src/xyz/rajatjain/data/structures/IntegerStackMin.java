@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author rajatjain on - 18-12-2021
  * @project dsAlgo
  */
-public class StackMin {
+public class IntegerStackMin {
 
     public static void main(String[] args) {
 
@@ -18,19 +18,19 @@ public class StackMin {
         int queries = in.nextInt();
         int i = 0;
 
-        Stack stack = new Stack(size);
+        IntegerStack integerStack = new IntegerStack(size);
 
         System.out.println("Please Input operations/queries one by one- ");
         while (i++ < queries) {
             switch (in.next()) {
                 case "push":
-                    stack.push(in.nextInt());
+                    integerStack.push(in.nextInt());
                     break;
                 case "pop":
-                    stack.pop();
+                    integerStack.pop();
                     break;
                 case "min":
-                    System.out.println(stack.getMin());
+                    System.out.println(integerStack.getMin());
             }
         }
     }
