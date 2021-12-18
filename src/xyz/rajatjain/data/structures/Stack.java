@@ -1,4 +1,4 @@
-package xyz.rajatjain.datastructures;
+package xyz.rajatjain.data.structures;
 
 public class Stack {
 
@@ -103,6 +103,27 @@ public class Stack {
 
         stack.printStack();
 
+        System.out.println("TOS (PEEK)- " + stack.peek());
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        stack.pop();
+
     }
 
+    public int getMin() {
+        if(isEmpty()){
+            System.out.println("Stack Underflow");
+        }
+
+        int min = stack[0];
+        for (int i = 0; i <= currentPointer; i++) {
+            if(min > stack[i]){
+                min = stack[i];
+            }
+        }
+        return min;
+    }
 }
