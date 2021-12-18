@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Stack<T> {
 
-    int MAX_SIZE;
-    int TOP_OF_STACK;
-    ArrayList<T> stack;
+    private final int MAX_SIZE;
+    private int TOP_OF_STACK;
+    private final ArrayList<T> stack;
 
     public Stack(int MAX_SIZE) {
         this.MAX_SIZE = MAX_SIZE;
@@ -19,17 +19,11 @@ public class Stack<T> {
     }
 
     public boolean isFull() {
-        if (TOP_OF_STACK >= MAX_SIZE - 1) {
-            return true;
-        }
-        return false;
+        return TOP_OF_STACK >= MAX_SIZE - 1;
     }
 
     public boolean isEmpty() {
-        if (TOP_OF_STACK < 0) {
-            return true;
-        }
-        return false;
+        return TOP_OF_STACK < 0;
     }
 
     public boolean push(T item) {
@@ -48,8 +42,9 @@ public class Stack<T> {
             System.out.println("Stack Underflow");
             return null;
         } else {
-            T item = stack.get(TOP_OF_STACK--);
-            stack.remove(item);
+            T item = stack.get(TOP_OF_STACK);
+            stack.remove(TOP_OF_STACK);
+            TOP_OF_STACK--;
             System.out.println(item + " popped from Stack");
             return item;
         }
@@ -60,7 +55,7 @@ public class Stack<T> {
             System.out.println("Stack Underflow");
             return null;
         } else {
-            return stack.get(TOP_OF_STACK--);
+            return stack.get(TOP_OF_STACK);
         }
     }
 

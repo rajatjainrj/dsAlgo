@@ -55,7 +55,7 @@ public class IntegerStack {
     public int peek() {
         if (isEmpty()) {
             System.out.println("Stack Underflow");
-            return 0;
+            return -1;
         } else {
             return stack[TOP_OF_STACK];
         }
