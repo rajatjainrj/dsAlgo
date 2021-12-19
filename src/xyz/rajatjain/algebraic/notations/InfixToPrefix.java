@@ -1,5 +1,7 @@
 package xyz.rajatjain.algebraic.notations;
 
+import java.util.Scanner;
+
 /**
  * @author rajatjain on - 18-12-2021
  * @project dsAlgo
@@ -34,16 +36,19 @@ public class InfixToPrefix {
         return new StringBuilder(input).reverse().toString();
     }
 
-    private String convertToPostFix() {
+    private String convertToPreFix() {
         String reversedInfixToPostFix = infixToPostfix.convert();
         System.out.println("Reversed Infix to Post Fix Expression - " + reversedInfixToPostFix);
         return reverseString(reversedInfixToPostFix);
     }
 
     public static void main(String[] args) {
-        InfixToPrefix infixToPrefix = new InfixToPrefix("2*4/(2-1)+6*4");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input the infix expression - ");
+//        InfixToPrefix infixToPrefix = new InfixToPrefix("2*4/(2-1)+6*4");
+        InfixToPrefix infixToPrefix = new InfixToPrefix(scanner.nextLine());
         System.out.println("Reversed Infix Expression - " + infixToPrefix.infixToPostfix.getInput());
-        System.out.println("Final Infix to Pre Fix Expression - " + infixToPrefix.convertToPostFix());
+        System.out.println("Final Infix to Pre Fix Expression - " + infixToPrefix.convertToPreFix());
     }
 
 
