@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class InfixToPrefix {
 
     private final String input;
+    private String output;
     private final InfixToPostfix infixToPostfix;
 
     public InfixToPrefix(String input) {
@@ -39,7 +40,16 @@ public class InfixToPrefix {
     private String convertToPreFix() {
         String reversedInfixToPostFix = infixToPostfix.convert();
         System.out.println("Reversed Infix to Post Fix Expression - " + reversedInfixToPostFix);
-        return reverseString(reversedInfixToPostFix);
+        output = reverseString(reversedInfixToPostFix);
+        return output;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public String getOutput() {
+        return output;
     }
 
     public static void main(String[] args) {
