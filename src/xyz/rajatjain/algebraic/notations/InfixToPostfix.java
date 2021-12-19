@@ -90,6 +90,14 @@ public class InfixToPostfix {
         return !isOpeningBracket(character) && !isClosingBracket(character) && !isOperator(character);
     }
 
+    public String getOutput() {
+        return output.toString();
+    }
+
+    public String getInput() {
+        return input;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input the infix expression - ");
