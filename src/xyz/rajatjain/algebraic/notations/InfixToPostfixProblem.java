@@ -7,6 +7,11 @@ import java.util.Scanner;
 /**
  * @author rajatjain on - 18-12-2021
  * @project dsAlgo
+ * Problem -
+ *
+ * Implement a method to convert infix to postfix expression.
+ * Operators allowed and there precedence are as follows:
+ * + op > * op >  - op > / op
  */
 public class InfixToPostfixProblem {
 
