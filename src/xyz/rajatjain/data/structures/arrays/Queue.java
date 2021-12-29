@@ -1,21 +1,23 @@
-package xyz.rajatjain.data.structures;
+package xyz.rajatjain.data.structures.arrays;
+
+import java.util.ArrayList;
 
 /**
  * @author rajatjain on - 29-12-2021
  * @project dsAlgo
  */
-public class IntegerQueue {
+public class Queue<T> {
 
-    int FRONT;
-    int REAR;
-    int MAX_SIZE;
-    int[] queue;
+    private int FRONT;
+    private int REAR;
+    private int MAX_SIZE;
+    private ArrayList<T> queue;
 
-    public IntegerQueue(int size) {
+    public Queue(int size) {
         this.FRONT = -1;
         this.REAR = -1;
         this.MAX_SIZE = size;
-        this.queue = new int[MAX_SIZE];
+        this.queue = new ArrayList<>();
     }
 
     public boolean isFull() {
@@ -26,10 +28,10 @@ public class IntegerQueue {
         return FRONT == -1;
     }
 
-    public boolean enqueue(int data) {
+    public boolean enqueue(T data) {
         if (!isFull()) {
             REAR++;
-            queue[REAR] = data;
+            queue.add(REAR, data);
             if (FRONT == -1) {
                 FRONT = 0;
             }
@@ -43,7 +45,7 @@ public class IntegerQueue {
 
     public boolean dequeue() {
         if (!isEmpty()) {
-            System.out.println(queue[FRONT] + " deleted");
+            System.out.println(queue.get(FRONT) + " deleted");
         } else {
             System.out.println("Queue Underflow");
         }
@@ -63,13 +65,29 @@ public class IntegerQueue {
         }
         System.out.print("Queue - FRONT = " + FRONT + " [");
         for (int i = FRONT; i <= REAR; i++) {
-            System.out.print(queue[i] + " ");
+            System.out.print(queue.get(i) + " ");
         }
         System.out.println("] REAR = " + REAR);
     }
 
+    public int getFRONT() {
+        return FRONT;
+    }
+
+    public int getREAR() {
+        return REAR;
+    }
+
+    public int getMAX_SIZE() {
+        return MAX_SIZE;
+    }
+
+    public ArrayList<T> getQueue() {
+        return queue;
+    }
+
     public static void main(String[] args) {
-        IntegerQueue queue = new IntegerQueue(4);
+        Queue<Integer> queue = new Queue<>(4);
 
         queue.enqueue(69);
         queue.enqueue(76);

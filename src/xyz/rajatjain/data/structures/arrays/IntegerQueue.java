@@ -1,23 +1,21 @@
-package xyz.rajatjain.data.structures;
-
-import java.util.ArrayList;
+package xyz.rajatjain.data.structures.arrays;
 
 /**
  * @author rajatjain on - 29-12-2021
  * @project dsAlgo
  */
-public class Queue<T> {
+public class IntegerQueue {
 
     int FRONT;
     int REAR;
     int MAX_SIZE;
-    ArrayList<T> queue;
+    int[] queue;
 
-    public Queue(int size) {
+    public IntegerQueue(int size) {
         this.FRONT = -1;
         this.REAR = -1;
         this.MAX_SIZE = size;
-        this.queue = new ArrayList<>();
+        this.queue = new int[MAX_SIZE];
     }
 
     public boolean isFull() {
@@ -28,10 +26,10 @@ public class Queue<T> {
         return FRONT == -1;
     }
 
-    public boolean enqueue(T data) {
+    public boolean enqueue(int data) {
         if (!isFull()) {
             REAR++;
-            queue.add(REAR, data);
+            queue[REAR] = data;
             if (FRONT == -1) {
                 FRONT = 0;
             }
@@ -45,7 +43,7 @@ public class Queue<T> {
 
     public boolean dequeue() {
         if (!isEmpty()) {
-            System.out.println(queue.get(FRONT) + " deleted");
+            System.out.println(queue[FRONT] + " deleted");
         } else {
             System.out.println("Queue Underflow");
         }
@@ -65,13 +63,13 @@ public class Queue<T> {
         }
         System.out.print("Queue - FRONT = " + FRONT + " [");
         for (int i = FRONT; i <= REAR; i++) {
-            System.out.print(queue.get(i) + " ");
+            System.out.print(queue[i] + " ");
         }
         System.out.println("] REAR = " + REAR);
     }
 
     public static void main(String[] args) {
-        Queue<Integer> queue = new Queue<>(4);
+        IntegerQueue queue = new IntegerQueue(4);
 
         queue.enqueue(69);
         queue.enqueue(76);

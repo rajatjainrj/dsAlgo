@@ -1,6 +1,6 @@
 package xyz.rajatjain.algebraic.notations;
 
-import xyz.rajatjain.data.structures.Stack;
+import xyz.rajatjain.data.structures.arrays.Stack;
 
 import java.util.Scanner;
 

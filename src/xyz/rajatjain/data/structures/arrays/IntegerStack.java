@@ -1,61 +1,63 @@
-package xyz.rajatjain.data.structures;
+package xyz.rajatjain.data.structures.arrays;
 
-import java.util.ArrayList;
+public class IntegerStack {
 
-public class Stack<T> {
+    int MAX_SIZE;
+    int TOP_OF_STACK;
+    int[] stack;
 
-    private final int MAX_SIZE;
-    private int TOP_OF_STACK;
-    private final ArrayList<T> stack;
-
-    public Stack(int MAX_SIZE) {
+    public IntegerStack(int MAX_SIZE) {
         this.MAX_SIZE = MAX_SIZE;
-        stack = new ArrayList<>();
+        stack = new int[MAX_SIZE];
         TOP_OF_STACK = -1;
     }
 
-    public Stack() {
+    public IntegerStack() {
         this(1000);
     }
 
     public boolean isFull() {
-        return TOP_OF_STACK >= MAX_SIZE - 1;
+        if (TOP_OF_STACK >= MAX_SIZE - 1) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isEmpty() {
-        return TOP_OF_STACK < 0;
+        if (TOP_OF_STACK < 0) {
+            return true;
+        }
+        return false;
     }
 
-    public boolean push(T item) {
+    public boolean push(int item) {
         if (isFull()) {
             System.out.println("Stack Overflow");
             return false;
         } else {
-            stack.add(++TOP_OF_STACK, item);
+            stack[++TOP_OF_STACK] = item;
             System.out.println(item + " Pushed into Stack");
             return true;
         }
     }
 
-    public T pop() {
+    public int pop() {
         if (isEmpty()) {
             System.out.println("Stack Underflow");
-            return null;
+            return -1;
         } else {
-            T item = stack.get(TOP_OF_STACK);
-            stack.remove(TOP_OF_STACK);
-            TOP_OF_STACK--;
+            int item = stack[TOP_OF_STACK--];
             System.out.println(item + " popped from Stack");
             return item;
         }
     }
 
-    public T peek() {
+    public int peek() {
         if (isEmpty()) {
             System.out.println("Stack Underflow");
-            return null;
+            return -1;
         } else {
-            return stack.get(TOP_OF_STACK);
+            return stack[TOP_OF_STACK];
         }
     }
 
@@ -66,13 +68,13 @@ public class Stack<T> {
         }
         System.out.print("[");
         for (int i = 0; i <= TOP_OF_STACK; i++) {
-            System.out.print(stack.get(i) + " ");
+            System.out.print(stack[i] + " ");
         }
         System.out.println("]");
     }
 
     public static void main(String[] args) {
-        Stack<Integer> integerStack = new Stack<>();
+        IntegerStack integerStack = new IntegerStack();
         integerStack.printStack();
 
         System.out.println("Is Empty - " + integerStack.isEmpty());
@@ -109,6 +111,20 @@ public class Stack<T> {
         integerStack.pop();
         integerStack.pop();
 
+    }
+
+    public int getMin() {
+        if(isEmpty()){
+            System.out.println("Stack Underflow");
+        }
+
+        int min = stack[0];
+        for (int i = 0; i <= TOP_OF_STACK; i++) {
+            if(min > stack[i]){
+                min = stack[i];
+            }
+        }
+        return min;
     }
 
 }

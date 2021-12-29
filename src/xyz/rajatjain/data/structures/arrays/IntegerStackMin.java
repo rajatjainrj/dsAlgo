@@ -1,4 +1,4 @@
-package xyz.rajatjain.data.structures;
+package xyz.rajatjain.data.structures.arrays;
 
 import java.util.Scanner;
 
