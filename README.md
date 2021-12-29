@@ -17,6 +17,8 @@ Sorting -
 Data Structures -
 1. Integer Stack
 2. Generic Stack
+3. Integer Queue
+4. Generic Queue
 
 
 Algebraic Notations and processing - 
