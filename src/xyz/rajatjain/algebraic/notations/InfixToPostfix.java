@@ -23,6 +23,8 @@ public class InfixToPostfix {
     public String convert() {
         char[] characters = input.toCharArray();
         for (Character character : characters) {
+            System.out.println();
+            System.out.println("Character - " + character);
             if (isOperand(character)) {
                 output.append(character);
             } else if (isOpeningBracket(character)) {
@@ -102,9 +104,9 @@ public class InfixToPostfix {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input the infix expression - ");
         InfixToPostfix infixToPostfix = new InfixToPostfix(scanner.nextLine());
-        System.out.println("Postfix Expression - " + infixToPostfix.convert());
-//        InfixToPostfix infixToPostfix = new InfixToPostfix("(Z+B/C*(D+E)-F)");
 //        System.out.println("Postfix Expression - " + infixToPostfix.convert());
+//        InfixToPostfix infixToPostfix = new InfixToPostfix("(Z+B/C*(D+E)-F)");
+        System.out.println("Postfix Expression - " + infixToPostfix.convert());
 //        InfixToPostfix infixToPostfix2 = new InfixToPostfix("2*4/(2-1)+6*4");
 //        System.out.println("Postfix Expression - " + infixToPostfix2.convert());
 
