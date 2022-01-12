@@ -1,5 +1,7 @@
 package xyz.rajatjain.data.structures.arrays;
 
+import xyz.rajatjain.utils.ArrayUtils;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ import java.util.Scanner;
  */
 public class ArrayBinaryTree {
 
-    private int tree[];
+    private final int[] tree;
     private int noOfNodes;
 
 
@@ -39,7 +41,6 @@ public class ArrayBinaryTree {
 
             int choice = scanner.nextInt();
             int value;
-            int position;
             switch (choice) {
                 case 1:
                     System.out.println(tree.getRootNode());
@@ -50,28 +51,32 @@ public class ArrayBinaryTree {
                     break;
                 case 3:
                     value = inputValue(scanner, "Position");
-                    System.out.println(tree.getLeftNodeForPosition(value));
+                    System.out.println(tree.getLeftChildNodeForPosition(value));
                     break;
                 case 4:
                     value = inputValue(scanner, "Position");
-                    System.out.println(tree.getRightNodeForPosition(value));
+                    System.out.println(tree.getRightChildNodeForPosition(value));
                     break;
                 case 5:
                     value = inputValue(scanner, "Value");
-                    position = tree.findIndexOfValue(value);
-                    System.out.println(tree.getParentNodeForPosition(position));
+                    System.out.println(tree.getParentNodeForValue(value));
                     break;
                 case 6:
                     value = inputValue(scanner, "Value");
-                    position = tree.findIndexOfValue(value);
-                    System.out.println(tree.getLeftNodeForPosition(position));
+                    System.out.println(tree.getLeftChildNodeForValue(value));
                     break;
                 case 7:
                     value = inputValue(scanner, "Value");
-                    position = tree.findIndexOfValue(value);
-                    System.out.println(tree.getRightNodeForPosition(position));
+                    System.out.println(tree.getRightChildNodeForValue(value));
                     break;
                 case 8:
+                    tree.printValues();
+                    break;
+                case 9:
+                    value = inputValue(scanner, "Value");
+                    System.out.println(tree.deleteValueFromTree(value));
+                    break;
+                case 10:
                     exit = true;
                     break;
             }
@@ -87,10 +92,12 @@ public class ArrayBinaryTree {
         System.out.println("5. Get Parent node for value");
         System.out.println("6. Get Left Child node for value");
         System.out.println("7. Get Right Child node for value");
-        System.out.println("8. Exit");
+        System.out.println("8. Print Tree Array");
+        System.out.println("9. Delete Value from Tree");
+        System.out.println("10. Exit");
     }
 
-    private int findIndexOfValue(int value) {
+    private int findPositionOfValue(int value) {
         for (int i = 1; i <= noOfNodes; i++) {
             if (tree[i] == value) {
                 return i;
@@ -114,13 +121,13 @@ public class ArrayBinaryTree {
         printValues();
     }
 
-    public int getLeftNodeForPosition(int position) {
+    public int getLeftChildNodeForPosition(int position) {
         if (position > noOfNodes || position <= 0) {
             System.out.println("Node does not exists");
             return 0;
         } else {
             int leftChildNodeIndex = (2 * position);
-            if(leftChildNodeIndex > noOfNodes){
+            if (leftChildNodeIndex > noOfNodes) {
                 System.out.println("No Left Child");
                 return 0;
             }
@@ -128,18 +135,36 @@ public class ArrayBinaryTree {
         }
     }
 
-    public int getRightNodeForPosition(int position) {
+    public int getLeftChildNodeForValue(int value) {
+        int position = findPositionOfValue(value);
+        if (position == 0) {
+            System.out.println("Value not found in tree");
+            return 0;
+        }
+        return getLeftChildNodeForPosition(position);
+    }
+
+    public int getRightChildNodeForPosition(int position) {
         if (position > noOfNodes || position <= 0) {
             System.out.println("Node does not exists");
             return 0;
         } else {
             int rightChildNodeIndex = (2 * position + 1);
-            if(rightChildNodeIndex > noOfNodes){
+            if (rightChildNodeIndex > noOfNodes) {
                 System.out.println("No Left Child");
                 return 0;
             }
             return tree[rightChildNodeIndex];
         }
+    }
+
+    public int getRightChildNodeForValue(int value) {
+        int position = findPositionOfValue(value);
+        if (position == 0) {
+            System.out.println("Value not found in tree");
+            return 0;
+        }
+        return getRightChildNodeForPosition(position);
     }
 
     public int getParentNodeForPosition(int position) {
@@ -151,8 +176,37 @@ public class ArrayBinaryTree {
         }
     }
 
+    public int getParentNodeForValue(int value) {
+        int position = findPositionOfValue(value);
+        if (position == 0) {
+            System.out.println("Value not found in tree");
+            return 0;
+        }
+        return getParentNodeForPosition(position);
+    }
+
     public int getRootNode() {
         return tree[1];
+    }
+
+    public boolean deleteValueFromTree(int value) {
+        int position = findPositionOfValue(value);
+        if (position == 0) {
+            System.out.println("Value not found in Tree");
+            return false;
+        }
+        return deleteValueFromTreeByPosition(position);
+    }
+
+    private boolean deleteValueFromTreeByPosition(int position) {
+        if (position > noOfNodes || position <= 0) {
+            System.out.println("Node does not exists");
+            return false;
+        }
+        ArrayUtils.swapValuesByIndex(tree, position, noOfNodes);
+        tree[noOfNodes] = 0;
+        noOfNodes--;
+        return true;
     }
 
     private void printValues() {
